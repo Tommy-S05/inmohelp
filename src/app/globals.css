@@ -3,9 +3,10 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Roboto:wght@300;500&display=swap');
 
-h1{
-    font-family: 'Philosopher', sans-serif;
+.philosopher {
+    font-family: 'Philosopher';
 }
+.shadow {-webkit-box-shadow: 1px 7px 7px 1px rgba(0, 0, 0, 0.12) -moz-box-shadow 1px 7px 16px 1px rgba(0, 0, 0, 0.12) box-shadow 1px 7px 16px 1px rgba(0, 0, 0, 0.12)}
 
 main{
     @apply max-w-screen-2xl mx-auto
