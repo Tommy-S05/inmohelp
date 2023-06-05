@@ -25,7 +25,11 @@ input[type=number] {
 }
 
 #page {
+<<<<<<< HEAD
     @apply max-w-screen-2xl mx-auto;
+=======
+    @apply max-w-screen-2xl mx-auto
+>>>>>>> master
 }
 
 

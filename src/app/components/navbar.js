@@ -1,5 +1,7 @@
 "use client";
 
+import HamburgerMenu from "@/app/components/hamburger-menu";
+
 export default function Navbar() {
     if(typeof window !== "undefined") {
         // your code with access to window or document object here
@@ -67,7 +69,12 @@ export default function Navbar() {
                         Registrarse
                     </button>
                 </div>
+                <HamburgerMenu/>
+                {/*<div>*/}
+                {/*    <a className={'md:hidden'} href="#"><i className="bi bi-list text-2xl"></i></a>*/}
+                {/*</div>*/}
             </nav>
+        
         </>
     );
 }
