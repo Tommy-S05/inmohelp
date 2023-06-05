@@ -11,7 +11,7 @@ import Head from "next/head";
 export default function Contactus() {
     return (
         <section id={"contactus"} className="flex justify-between px-20 py-5">
-            <div className=" space-y-5">
+            <div className="space-y-5">
                 <h2 className=" text-5xl font-bold">Contactanos</h2>
                 <p className=" text-neutral-400 w-64">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error nam
