@@ -2,7 +2,7 @@ export default function Categories() {
     return (
         <section className={'bg-[#EEEEEE]'}>
             <div className={'px-36'}>
-                <div>
+                <div className={'flex justify-between items-center'}>
                     <h1 className={'text-primary text-5xl'}>
                         Categorias
                     </h1>

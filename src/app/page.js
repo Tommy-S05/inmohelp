@@ -4,8 +4,47 @@ import Search from "@/app/components/search";
 import Categories from "@/app/components/categories";
 
 export default function Home() {
+    const AptSlider = () => {
+        return (
+            <div className=" relative w-80 ">
+                <img
+                    alt="Propiedad"
+                    className=" h-80 object-cover"
+                    src="https://imagens-revista.vivadecora.com.br/uploads/2020/10/Moveis-planejados-para-decoracao-de-apartamento-pequeno-com-ambientes-integrados-Foto-Arkpad.jpg"
+                />
+                <footer className="flex justify-center w-full absolute -bottom-24">
+                    <div className=" p-3 bg-white w-52 h-36  relative border-black rounded-xl">
+                        <header
+                            className="absolute right-0 -top-5 text-white bg-primary p-2 rounded-tr-xl rounded-bl-xl">
+                            $25,000/USD
+                        </header>
+                        <p className="text-xs py-2">Venta</p>
+                        <h1 className="text-sm py-1">Casa doble, Barrio Alberdi</h1>
+                        <hr></hr>
+                        <ul className="text-xs grid grid-cols-2 mt-2 gap-2 [&>li]:flex [&>li]:items-center [&>li]:space-x-[3px] [&>li>i]:text-primary">
+                            <li>
+                                <i className="bi bi-door-open"></i>
+                                <p>3 Ambientes</p>
+                            </li>
+                            <li>
+                                <p>60 m</p>
+                            </li>
+                            <li>
+                                <p>3 Banos</p>
+                            </li>
+                            <li>
+                                <i className="bi bi-house-heart"></i>
+                                <p>3 Dormitorios</p>
+                            </li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        );
+    };
+    
     return (
-        <main>
+        <main className=" space-y-16">
             <section className="relative">
                 <div
                     className={
@@ -32,22 +71,45 @@ export default function Home() {
                     alt="Background"
                 />
             </section>
-            <Categories/>
+            <section>
+                <div className="bg-primary w-72 p-5 rounded-br-3xl ">
+                    <h2 className="text-5xl text-white pl-10">Detalles</h2>
+                </div>
+                <div className=" max-w-screen-lg mx-auto p-5">
+                    <div className=" flex space-x-3">
+                        <AptSlider/>
+                        <AptSlider/>
+                        <AptSlider/>
+                        <AptSlider/>
+                    </div>
+                </div>
+            </section>
+            {/*<Categories/>*/}
             <section id={"contactanos"} className={"relative"}>
                 <div
                     className={
                         "absolute flex-col flex justify-center items-center h-full w-full md:space-y-5 space-y-20"
                     }
                 >
-                    <h2 className={"font-bold md:text-5xl text-5xl text-white"}>Contactanos</h2>
-                    <p className={"hidden md:flex text-white"}>Sabemos lo que necesitas</p>
+                    <h2 className={"font-bold md:text-5xl text-5xl text-white"}>
+                        Contactanos
+                    </h2>
+                    <p className={"hidden md:flex text-white"}>
+                        Sabemos lo que necesitas
+                    </p>
                     <button className="bg-white p-3 px-7 text-black rounded-xl">
                         Enviar un mensaje
                     </button>
                 </div>
-                <div className={"hidden bg-white w-full md:flex justify-center pb-14 pt-4 px-5"}>
+                <div
+                    className={
+                        "hidden bg-white w-full md:flex justify-center pb-14 pt-4 px-5"
+                    }
+                >
                     <img
-                        className={"hidden md:flex h-[400px] w-[900px] lg:object-cover object-contain"}
+                        className={
+                            "hidden md:flex h-[400px] w-[900px] lg:object-cover object-contain"
+                        }
                         src="/assets/contactanos/contactanos.png"
                         alt="Contactanos"
                     />
