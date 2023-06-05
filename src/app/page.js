@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Search from "@/app/components/search";
+import Categories from "@/app/components/categories";
 
 export default function Home() {
     return (
@@ -31,6 +32,7 @@ export default function Home() {
                     alt="Background"
                 />
             </section>
+            <Categories/>
             <section id={"contactanos"} className={"relative"}>
                 <div
                     className={
