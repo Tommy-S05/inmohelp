@@ -1,27 +1,9 @@
 "use client";
 import Image from "next/image";
-<<<<<<< HEAD
-import { faBath } from "@fortawesome/free-solid-svg-icons";
-import Search from "@/app/components/search";
-import Categories from "@/app/components/categories";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-export default function Home() {
-  const AptSlider = () => {
-    return (
-      <div className=" relative w-80 ">
-        <img
-          alt="Propiedad"
-          className=" h-80 object-cover"
-          src="https://imagens-revista.vivadecora.com.br/uploads/2020/10/Moveis-planejados-para-decoracao-de-apartamento-pequeno-com-ambientes-integrados-Foto-Arkpad.jpg"
-        />
-        <footer className="flex justify-center w-full absolute -bottom-24">
-=======
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBath } from "@fortawesome/free-solid-svg-icons";
 import { faBed, faVectorSquare } from "@fortawesome/free-solid-svg-icons";
 import Search from "@/app/components/search";
-import Categories from "@/app/components/categories";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -31,18 +13,19 @@ export default function Home() {
     dots: false,
     infinite: false,
     speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 5,
   };
   const AptSlider = () => {
     return (
-      <div className=" relative w-80   ">
+      <div className=" relative w-80 h-[400px]   ">
         <img
           alt="Propiedad"
           className=" h-80 object-cover "
           src="https://imagens-revista.vivadecora.com.br/uploads/2020/10/Moveis-planejados-para-decoracao-de-apartamento-pequeno-com-ambientes-integrados-Foto-Arkpad.jpg"
         />
-        <footer className="flex justify-center w-full absolute -bottom-24 ">
->>>>>>> de5fffbe0a71a1ee9597e14f7f2d0481d40d99d9
-          <div className=" p-3 bg-white w-52 h-36  relative border-black rounded-xl">
+        <footer className="flex justify-center w-full absolute -bottom-0 ">
+          <div className=" p-3 bg-white w-52 h-36  relative border-black  rounded-xl">
             <header className="absolute right-0 -top-5 text-white bg-primary p-2 rounded-tr-xl rounded-bl-xl">
               $25,000/USD
             </header>
@@ -58,10 +41,6 @@ export default function Home() {
                 <p>60 m</p>
               </li>
               <li>
-<<<<<<< HEAD
-                <FontAwesomeIcon icon={faBath} color={"#0066FF"} />
-=======
->>>>>>> de5fffbe0a71a1ee9597e14f7f2d0481d40d99d9
                 <p>3 Banos</p>
               </li>
               <li>
@@ -76,7 +55,7 @@ export default function Home() {
   };
 
   return (
-    <main className=" space-y-16">
+    <main className=" space-y-10">
       <section className="relative">
         <div
           className={
@@ -103,37 +82,21 @@ export default function Home() {
           alt="Background"
         />
       </section>
-<<<<<<< HEAD
-      <section className={"pb-20"}>
-        <div className="bg-primary w-72 p-5 rounded-br-3xl ">
-          <h2 className="text-5xl text-white pl-10">Detalles</h2>
-        </div>
-        <div className=" max-w-screen-lg mx-auto p-5">
-          <div className=" flex space-x-3">
-            <AptSlider />
-            <AptSlider />
-            <AptSlider />
-            <AptSlider />
-          </div>
-        </div>
-      </section>
-      <Categories />
-=======
       <section>
         <div className="bg-primary w-72 p-5 rounded-br-3xl ">
           <h2 className="text-5xl text-white pl-10">Detalles</h2>
         </div>
         <div className=" max-w-screen-lg mx-auto p-5 ">
-          <div className=" flex space-x-3  ">
-            <Slider {...settings}>
-              <AptSlider />
-              <AptSlider />
-            </Slider>
-          </div>
+          <Slider {...settings}>
+            <AptSlider />
+            <AptSlider />
+            <AptSlider />
+            <AptSlider />
+            <AptSlider />
+          </Slider>
         </div>
       </section>
       {/*<Categories/>*/}
->>>>>>> de5fffbe0a71a1ee9597e14f7f2d0481d40d99d9
       <section id={"contactanos"} className={"relative"}>
         <div
           className={
