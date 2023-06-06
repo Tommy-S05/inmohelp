@@ -1,5 +1,8 @@
 "use client";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBath } from "@fortawesome/free-solid-svg-icons";
+import { faBed, faVectorSquare } from "@fortawesome/free-solid-svg-icons";
 import Search from "@/app/components/search";
 import Categories from "@/app/components/categories";
 import Slider from "react-slick";
