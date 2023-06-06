@@ -1,6 +1,7 @@
 "use client";
 
 import HamburgerMenu from "@/app/components/hamburger-menu";
+import Link from "next/link";
 
 export default function Navbar() {
     if(typeof window !== "undefined") {
@@ -59,7 +60,7 @@ export default function Navbar() {
                             <a href="">Indices de Precios</a>
                         </li>
                         <li>
-                            <a href="">Contactanos</a>
+                            <Link href={'/contactus'}>Contactanos</Link>
                         </li>
                         <li>
                             <a href="">Idioma</a>

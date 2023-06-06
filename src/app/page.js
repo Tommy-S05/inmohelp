@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
+import {faBath} from "@fortawesome/free-solid-svg-icons";
 import Search from "@/app/components/search";
 import Categories from "@/app/components/categories";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Home() {
     const AptSlider = () => {
@@ -30,6 +32,7 @@ export default function Home() {
                                 <p>60 m</p>
                             </li>
                             <li>
+                                <FontAwesomeIcon icon={faBath} color={'#0066FF'}/>
                                 <p>3 Banos</p>
                             </li>
                             <li>
@@ -71,7 +74,7 @@ export default function Home() {
                     alt="Background"
                 />
             </section>
-            <section>
+            <section className={'mb-[300px]'}>
                 <div className="bg-primary w-72 p-5 rounded-br-3xl ">
                     <h2 className="text-5xl text-white pl-10">Detalles</h2>
                 </div>
@@ -84,7 +87,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            {/*<Categories/>*/}
+            <Categories/>
             <section id={"contactanos"} className={"relative"}>
                 <div
                     className={
