@@ -3,6 +3,17 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Roboto:wght@300;500&display=swap');
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .philosopher {
     font-family: 'Philosopher';
 }
@@ -14,8 +25,9 @@
 }
 
 #page {
-    @apply max-w-screen-2xl mx-auto
+    @apply max-w-screen-2xl mx-auto;
 }
+
 
 
 
