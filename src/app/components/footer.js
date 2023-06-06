@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
     return (
         // <footer className={"bg-white p-4 flex justify-between items-center"}>
@@ -15,13 +17,12 @@ export default function Footer() {
             <div className="mx-auto max-w-screen-xl">
                 <div className="md:flex md:justify-between gap-6">
                     <div className="mb-6 md:mb-0 md:w-56">
-                        <a href="https://flowbite.com" className="flex items-center">
+                        <Link href={'/'} className="flex items-center">
                             <img className="w-24 h-24" src="/assets/logos/logo-white.png" alt="Logo"/>
-                            {/*<img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-8"*/}
-                            {/*     alt="FlowBite Logo"/>*/}
-                            <span
-                                className="self-center text-2xl font-semibold whitespace-nowrap text-white">InmoHelp</span>
-                        </a>
+                            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+                                InmoHelp
+                            </span>
+                        </Link>
                         <p className={"text-white mt-5"}>
                             Este es un texto de relleno, que tiene la finalidad de rellenar los espacios donde iria
                             texto que quieran incluir los clientes.
@@ -32,7 +33,9 @@ export default function Footer() {
                             <h2 className="mb-6 text-md font-semibold uppercase text-white">Soporte</h2>
                             <ul className="text-white space-y-4">
                                 <li className="">
-                                    <a href="#" className="hover:underline">Contactanos</a>
+                                    <Link href={'/contactus'} className="hover:underline">
+                                        Contactanos
+                                    </Link>
                                 </li>
                                 <li>
                                     <a href="#" className="hover:underline">Centro de Soporte</a>

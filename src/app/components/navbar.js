@@ -47,10 +47,10 @@ export default function Navbar() {
                 id="header"
                 className=" p-4 flex relative justify-between items-center lg:px-20 px-3 max-w-screen-2xl mx-auto"
             >
-                <div className="flex items-center">
+                <Link href={'/'} className="flex items-center">
                     <img className="w-24 h-24" src="/assets/logos/logo-black.png" alt="Logo"/>
                     <h1 className="font-bold text-2xl title">InmoHelp</h1>
-                </div>
+                </Link>
                 <div className="hidden md:flex space-x-10 items-center">
                     <ul className="hidden md:flex md:[&>li]:px-1 [&>li]:font-bold [&>li]:py-2 md:[&>li]:text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 lg:[&>li]:px-5 lg:[&>li]:text-md">
                         <li>
