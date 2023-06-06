@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBath} from "@fortawesome/free-solid-svg-icons";
-import {faBed, faVectorSquare} from "@fortawesome/free-solid-svg-icons";
+import {faBath, faBed, faVectorSquare} from "@fortawesome/free-solid-svg-icons";
 import Search from "@/app/components/search";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -13,16 +12,22 @@ export default function Home() {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 3.3,
         slidesToScroll: 5,
     };
-    const AptSlider = () => {
+    
+    const image1 = "/assets/destacados/image1.png";
+    const image2 = "/assets/destacados/image2.png";
+    const image3 = "/assets/destacados/image2.png";
+    const image4 = "https://imagens-revista.vivadecora.com.br/uploads/2020/10/Moveis-planejados-para-decoracao-de-apartamento-pequeno-com-ambientes-integrados-Foto-Arkpad.jpg";
+    
+    const AptSlider = ({image, name}) => {
         return (
             <div className=" relative w-80 h-[400px]   ">
                 <img
                     alt="Propiedad"
-                    className=" h-80 object-cover "
-                    src="https://imagens-revista.vivadecora.com.br/uploads/2020/10/Moveis-planejados-para-decoracao-de-apartamento-pequeno-com-ambientes-integrados-Foto-Arkpad.jpg"
+                    className=" h-80 object-cover w-72"
+                    src={image}
                 />
                 <footer className="flex justify-center w-full absolute -bottom-0 ">
                     <div className=" p-3 bg-white w-52 h-36  relative border-black  rounded-xl">
@@ -31,21 +36,23 @@ export default function Home() {
                             $25,000/USD
                         </header>
                         <p className="text-xs py-2">Venta</p>
-                        <h1 className="text-sm py-1">Casa doble, Barrio Alberdi</h1>
+                        <h1 className="text-sm py-1">{name}</h1>
                         <hr></hr>
-                        <ul className="text-xs grid grid-cols-2 mt-2 gap-2 [&>li]:flex [&>li]:items-center [&>li]:space-x-[3px] [&>li>i]:text-primary">
+                        <ul className="text-xs grid grid-cols-2 mt-2 gap-1 [&>li]:flex [&>li]:items-center [&>li]:space-x-[2px] [&>li>i]:text-primary">
                             <li>
                                 <i className="bi bi-door-open"></i>
                                 <p>3 Ambientes</p>
                             </li>
                             <li>
+                                <FontAwesomeIcon icon={faVectorSquare} className={'text-primary'}/>
                                 <p>60 m</p>
                             </li>
                             <li>
+                                <FontAwesomeIcon icon={faBath} className={'text-primary'}/>
                                 <p>3 Banos</p>
                             </li>
                             <li>
-                                <i className="bi bi-house-heart"></i>
+                                <FontAwesomeIcon icon={faBed} className={'text-primary'}/>
                                 <p>3 Dormitorios</p>
                             </li>
                         </ul>
@@ -89,11 +96,11 @@ export default function Home() {
                 </div>
                 <div className=" max-w-screen-lg mx-auto p-5 ">
                     <Slider {...settings}>
-                        <AptSlider/>
-                        <AptSlider/>
-                        <AptSlider/>
-                        <AptSlider/>
-                        <AptSlider/>
+                        <AptSlider name={'Casa, Barrio Alberdi'} image={image1}/>
+                        <AptSlider name={'Casa doble, Barrio Alberdi'} image={image2}/>
+                        <AptSlider name={'Casa trio, Barrio Alberdi'} image={image3}/>
+                        <AptSlider name={'Casa cuadruple, Barrio Alberdi'} image={image4}/>
+                        <AptSlider name={'Casa quintuple, Barrio Alberdi'} image={image1}/>
                     </Slider>
                 </div>
             </section>
