@@ -2,25 +2,21 @@
 import Image from "next/image";
 import Search from "@/app/components/search";
 import Categories from "@/app/components/categories";
+// import { Carousel } from "react-responsive-carousel";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function Home() {
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-  };
+export default function Probando() {
   const AptSlider = () => {
     return (
-      <div className=" relative w-80   ">
+      <div className=" relative w-80 overflow-auto ">
         <img
           alt="Propiedad"
-          className=" h-80 object-cover "
+          className=" h-80 object-cover"
           src="https://imagens-revista.vivadecora.com.br/uploads/2020/10/Moveis-planejados-para-decoracao-de-apartamento-pequeno-com-ambientes-integrados-Foto-Arkpad.jpg"
         />
-        <footer className="flex justify-center w-full absolute -bottom-24 ">
+        <footer className="flex justify-center w-full absolute -bottom-24">
           <div className=" p-3 bg-white w-52 h-36  relative border-black rounded-xl">
             <header className="absolute right-0 -top-5 text-white bg-primary p-2 rounded-tr-xl rounded-bl-xl">
               $25,000/USD
@@ -48,6 +44,14 @@ export default function Home() {
         </footer>
       </div>
     );
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
   };
 
   return (
@@ -78,18 +82,39 @@ export default function Home() {
           alt="Background"
         />
       </section>
+      <div className="bg-primary w-72 p-5 rounded-br-3xl ">
+        <h2 className="text-5xl text-white pl-10">Detalles</h2>
+      </div>
       <section>
-        <div className="bg-primary w-72 p-5 rounded-br-3xl ">
+        {/* <div className="bg-primary w-72 p-5 rounded-br-3xl ">
           <h2 className="text-5xl text-white pl-10">Detalles</h2>
-        </div>
-        <div className=" max-w-screen-lg mx-auto p-5 ">
-          <div className=" flex space-x-3  ">
-            <Slider {...settings}>
-              <AptSlider />
-              <AptSlider />
-            </Slider>
+        </div> */}
+        <Slider {...settings}>
+          <div>
+            <AptSlider />
           </div>
-        </div>
+          <div>
+            <AptSlider />
+          </div>
+          <div>
+            <AptSlider />
+          </div>
+          <div>
+            <AptSlider />
+          </div>
+          <div>
+            <AptSlider />
+          </div>
+          <div>
+            <AptSlider />
+          </div>
+          <div>
+            <AptSlider />
+          </div>
+          <div>
+            <AptSlider />
+          </div>
+        </Slider>
       </section>
       {/*<Categories/>*/}
       <section id={"contactanos"} className={"relative"}>
