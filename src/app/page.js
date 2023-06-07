@@ -6,6 +6,8 @@ import Search from "@/app/components/search";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Contactus from "@/app/components/contactus";
+import Link from "next/link";
 
 export default function Home() {
     const settings = {
@@ -63,7 +65,7 @@ export default function Home() {
     };
     
     return (
-        <main className=" space-y-10">
+        <main className="md:space-y-5">
             <section className="relative">
                 <div
                     className={
@@ -111,9 +113,8 @@ export default function Home() {
                             Categorias
                         </h1>
                         <div className={'flex items-center lg:gap-16 md:space-x-10 space-x-2'}>
-                            <a href="">Ver Todas</a>
+                            <Link href={'/categories'}>Ver Todas</Link>
                             <img className={'lg:w-36 md:w-24 w-12'} src="/assets/arrow-right.png" alt="arrow-right"/>
-                            {/*<FontAwesomeIcon icon={faArrowRight} className={'text-[#555555]'}/>*/}
                         </div>
                     </header>
                     <div className={'grid md:grid-cols-2 lg:gap-5 md:gap-3 grid-cols-1'}>
@@ -142,41 +143,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section id={"contactanos"} className={"relative"}>
-                <div
-                    className={
-                        "absolute flex-col flex justify-center items-center h-full w-full md:space-y-5 space-y-20"
-                    }
-                >
-                    <h2 className={"font-bold md:text-5xl text-5xl text-white"}>
-                        Contactanos
-                    </h2>
-                    <p className={"hidden md:flex text-white"}>
-                        Sabemos lo que necesitas
-                    </p>
-                    <button className="bg-white p-3 px-7 text-black rounded-xl">
-                        Enviar un mensaje
-                    </button>
-                </div>
-                <div
-                    className={
-                        "hidden bg-white w-full md:flex justify-center pb-14 pt-4 px-5"
-                    }
-                >
-                    <img
-                        className={
-                            "hidden md:flex h-[400px] w-[900px] lg:object-cover object-contain"
-                        }
-                        src="/assets/contactanos/contactanos.png"
-                        alt="Contactanos"
-                    />
-                </div>
-                <img
-                    className={"md:hidden  w-full object-cover"}
-                    src="/assets/contactanos/contactanos-movile.png"
-                    alt="Contactanos"
-                />
-            </section>
+            <Contactus/>
         </main>
     );
 }
