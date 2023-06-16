@@ -10,7 +10,6 @@ export default function Categories() {
                             Categorias
                         </h1>
                         <div className={'flex items-center lg:gap-16 md:space-x-10 space-x-2'}>
-                            <a href="">Ver Todas</a>
                             <img className={'lg:w-36 md:w-24 w-12'} src="/assets/arrow-right.png" alt="arrow-right"/>
                         </div>
                     </header>
