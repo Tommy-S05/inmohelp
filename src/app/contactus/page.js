@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
-import { Textarea, TextInput } from "flowbite-react";
-import Head from "next/head";
+import {Textarea, TextInput} from "flowbite-react";
+// import Head from "next/head";
 
 // export const metadata = {
 //   title: "Contactanos :)",
@@ -9,100 +8,94 @@ import Head from "next/head";
 // };
 
 export default function Contactus() {
-  return (
-    <section
-      id={"contactus"}
-      className={
-        " flex flex-col lg:flex-row lg:gap-10 justify-between  px-10 py-10 lg:space-y-0 space-y-10 "
-      }
-    >
-      <div className="flex flex-col lg:items-start items-center space-y-5">
-        <h2 className="md:text-5xl text-4xl font-bold">Contactanos</h2>
-        <p className=" text-neutral-400 lg:w-64">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error nam
-          delectus excepturi facilis necessitatibus nesciunt provident non
-          tempore quos sunt.
-        </p>
-        <ul className=" [&>li]:flex [&>li]:items-center [&>li]:space-x-3 [&>li>i]:text-lg ">
-          <li>
-            <i className="bi bi-envelope-fill text-primary"></i>
-            <p>tommy@gmail.com</p>
-          </li>
-          <li>
-            <i className="bi bi-telephone-fill text-primary"></i>
-            <p>809-241-2028</p>
-          </li>
-        </ul>
-      </div>
-
-      <form
-        className={
-          "bg-white shadow lg:w-[750px] py-10 md:px-10 px-5 rounded-lg"
-        }
-      >
-        <div className="md:flex md:space-x-5">
-          <div className="mb-2 block w-full">
-            <label className={"text-white text-md font-bold"}>Nombre</label>
-            <TextInput
-              id="email4"
-              placeholder="Pedro"
-              sizing={"lg"}
-              required
-              type="text"
-            />
-          </div>
-          <div className="mb-2 block  w-full">
-            <label className={"text-white text-md font-bold"}>Apellido</label>
-            <TextInput
-              id="email4"
-              placeholder="Almonte"
-              sizing={"lg"}
-              required
-              type="text"
-            />
-          </div>
-        </div>
-        <div className="md:flex md:space-x-5">
-          <div className="mb-2 block w-full">
-            <label className={"text-white text-md font-bold"}>Email</label>
-            <TextInput
-              id="email4"
-              placeholder="example@gmail.com"
-              required
-              sizing={"lg"}
-              type="email"
-            />
-          </div>
-          <div className="mb-2 block w-full">
-            <label className={"text-white text-md font-bold"}>Telefono</label>
-            <TextInput
-              id="email4"
-              placeholder="8097862310"
-              sizing={"lg"}
-              required
-              type="number"
-            />
-          </div>
-        </div>
-
-        <div className="w-full pb-5" id="textarea">
-          <div className="mb-2 block w-full">
-            <label className={"text-white text-md font-bold"}>Tu mensaje</label>
-          </div>
-          <Textarea
-            id="comment"
-            placeholder="Message"
-            required
-            rows={4}
-            cols={50}
-          />
-        </div>
-        <div className={"flex "}>
-          <button className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
-            Contactar
-          </button>
-        </div>
-      </form>
-    </section>
-  );
+    return (
+        <section id={"contactus"}
+                 className={" flex flex-col lg:flex-row lg:gap-10 justify-between  px-10 py-10 lg:space-y-0 space-y-10 "}
+        >
+            <div className="flex flex-col lg:items-start items-center space-y-5">
+                <h2 className="md:text-5xl text-4xl font-bold">Contactanos</h2>
+                <p className=" text-neutral-400 lg:w-64">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error nam
+                    delectus excepturi facilis necessitatibus nesciunt provident non
+                    tempore quos sunt.
+                </p>
+                <ul className=" [&>li]:flex [&>li]:items-center [&>li]:space-x-3 [&>li>i]:text-lg ">
+                    <li>
+                        <i className="bi bi-envelope-fill text-primary"></i>
+                        <p>tommy@gmail.com</p>
+                    </li>
+                    <li>
+                        <i className="bi bi-telephone-fill text-primary"></i>
+                        <p>809-241-2028</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <form
+                className={"bg-white shadow lg:w-[750px] py-10 md:px-10 px-5 rounded-lg"}
+            >
+                <div className="md:flex md:space-x-5">
+                    <div className="mb-2 block w-full">
+                        <label className={"text-white text-md font-bold"}>Nombre</label>
+                        <TextInput
+                            id="email4"
+                            placeholder="Pedro"
+                            sizing={"lg"}
+                            required
+                            type="text"
+                        />
+                    </div>
+                    <div className="mb-2 block  w-full">
+                        <label className={"text-white text-md font-bold"}>Apellido</label>
+                        <TextInput
+                            id="email4"
+                            placeholder="Almonte"
+                            sizing={"lg"}
+                            required
+                            type="text"
+                        />
+                    </div>
+                </div>
+                <div className="md:flex md:space-x-5">
+                    <div className="mb-2 block w-full">
+                        <label className={"text-white text-md font-bold"}>Email</label>
+                        <TextInput
+                            id="email4"
+                            placeholder="example@gmail.com"
+                            required
+                            sizing={"lg"}
+                            type="email"
+                        />
+                    </div>
+                    <div className="mb-2 block w-full">
+                        <label className={"text-white text-md font-bold"}>Telefono</label>
+                        <TextInput
+                            id="email4"
+                            placeholder="8097862310"
+                            sizing={"lg"}
+                            required
+                            type="number"
+                        />
+                    </div>
+                </div>
+                <div className="w-full pb-5" id="textarea">
+                    <div className="mb-2 block w-full">
+                        <label className={"text-white text-md font-bold"}>Tu mensaje</label>
+                    </div>
+                    <Textarea
+                        id="comment"
+                        placeholder="Message"
+                        required
+                        rows={4}
+                        cols={50}
+                    />
+                </div>
+                <div className={"flex "}>
+                    <button className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
+                        Contactar
+                    </button>
+                </div>
+            </form>
+        </section>
+    );
 }
