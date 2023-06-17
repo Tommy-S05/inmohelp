@@ -1,11 +1,7 @@
 "use client";
 import Image from "next/image";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faBath,
-    faBed,
-    faVectorSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import {faBath, faBed, faCarSide, faVectorSquare} from "@fortawesome/free-solid-svg-icons";
 import Search from "@/app/components/search";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -65,7 +61,7 @@ export default function Home() {
     
     const AptSlider = ({image, name}) => {
         return (
-            <div className=" relative w-80 h-[400px]   ">
+            <div className=" relative w-72 h-[400px]">
                 <img alt="Propiedad" className=" h-80 object-cover w-72" src={image}/>
                 <footer className="flex justify-center w-full absolute -bottom-0 ">
                     <div className=" p-3 bg-white w-52 h-36  relative border-black  rounded-xl">
@@ -78,22 +74,20 @@ export default function Home() {
                         <hr></hr>
                         <ul className="text-xs grid grid-cols-2 mt-2 gap-1 [&>li]:flex [&>li]:items-center [&>li]:space-x-[2px] [&>li>i]:text-primary">
                             <li>
-                                <i className="bi bi-door-open"></i>
-                                <p>3 Ambientes</p>
+                                <FontAwesomeIcon icon={faCarSide} className={"text-primary w-[15px]"}/>
+                                <p>3 Parqueos</p>
                             </li>
                             <li>
-                                <FontAwesomeIcon
-                                    icon={faVectorSquare}
-                                    className={"text-primary"}
+                                <FontAwesomeIcon icon={faVectorSquare} className={"text-primary w-[15px]"}
                                 />
                                 <p>60 m</p>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faBath} className={"text-primary"}/>
+                                <FontAwesomeIcon icon={faBath} className={"text-primary w-[15px]"}/>
                                 <p>3 Banos</p>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faBed} className={"text-primary"}/>
+                                <FontAwesomeIcon icon={faBed} className={"text-primary w-[15px]"}/>
                                 <p>3 Dormitorios</p>
                             </li>
                         </ul>
@@ -128,7 +122,7 @@ export default function Home() {
                     <div className="bg-primary w-72 p-5 rounded-br-3xl ">
                         <h2 className="text-5xl text-white pl-10">Detalles</h2>
                     </div>
-                    <div className=" max-w-screen-lg mx-auto p-5 ">
+                    <div className=" max-w-screen-lg mx-auto p-5 cursor-pointer">
                         <Slider {...settings}>
                             <AptSlider name={'Casa, Barrio Alberdi'} image={image1}/>
                             <AptSlider name={'Casa doble, Barrio Alberdi'} image={image2}/>

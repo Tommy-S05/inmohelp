@@ -54,7 +54,7 @@ export default function Navbar() {
                 <div className="hidden md:flex space-x-10 items-center">
                     <ul className="hidden md:flex md:[&>li]:px-1 [&>li]:font-bold [&>li]:py-2 md:[&>li]:text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 lg:[&>li]:px-5 lg:[&>li]:text-md">
                         <li>
-                            <a href="">Propiedades</a>
+                            <Link href={'/properties'}>Propiedades</Link>
                         </li>
                         <li>
                             <a href="">Indices de Precios</a>
