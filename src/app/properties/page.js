@@ -1,8 +1,8 @@
-'use client';
+// 'use client';
 import Contactus from "@/app/components/contactus";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBath, faBed, faVectorSquare, faCarSide} from "@fortawesome/free-solid-svg-icons";
-import {Select, TextInput} from "flowbite-react";
+// import {Select, TextInput} from "flowbite-react";
+import {ListOfProperties} from "@/app/properties/components/ListOfProperties";
+import {SelectInput, TextsInput} from "@/app/properties/components/Inputs";
 
 const Checkbox = ({name}) => {
     return (
@@ -16,77 +16,13 @@ const Checkbox = ({name}) => {
     );
 }
 
-const SelectInput = ({name, options}) => {
-    return (
-        <div className={'space-y-3'}>
-            <header>
-                <h2 className={'text-lg'}>
-                    {name}
-                </h2>
-            </header>
-            <div className={'pl-2'}>
-                <Select id="Select" sizing={"sm"}>
-                    {
-                        options.map((option) => {
-                            return (
-                                <option>{option}</option>
-                            );
-                        })
-                    }
-                </Select>
-            </div>
-        </div>
-    );
-}
 export default function Properties() {
-    
-    const Property = ({image, name, tarea, price, parqueos, tamano, banos, room}) => {
-        return (
-            <div className="relative w-64 h-[425px]">
-                <img
-                    className="h-full object-cover w-64"
-                    src={image}
-                    alt="Propiedad"
-                />
-                <footer className="flex justify-center w-full absolute bottom-0 ">
-                    <div className=" p-3 bg-white bg-opacity-80 w-full h-36 relative rounded-tl-xl">
-                        <header
-                            className="absolute right-0 -top-5 text-white bg-primary p-2 rounded-tr-xl rounded-bl-xl">
-                            ${price}/RD
-                        </header>
-                        <p className="text-xs py-2">{tarea}</p>
-                        <h1 className="text-sm py-1">{name}</h1>
-                        <hr></hr>
-                        <ul className="text-xs grid grid-cols-2 mt-2 gap-1 [&>li]:flex [&>li]:items-center [&>li]:space-x-[2px] [&>li>i]:text-primary">
-                            <li>
-                                <FontAwesomeIcon icon={faCarSide} className={"text-primary w-[15px]"}/>
-                                <p>{parqueos} Parqueos</p>
-                            </li>
-                            <li>
-                                <FontAwesomeIcon icon={faVectorSquare} className={"text-primary w-[15px]"}/>
-                                <p>{tamano} m</p>
-                            </li>
-                            <li>
-                                <FontAwesomeIcon icon={faBath} className={"text-primary w-[15px]"}/>
-                                <p>{banos} Baños</p>
-                            </li>
-                            <li>
-                                <FontAwesomeIcon icon={faBed} className={"text-primary w-[15px]"}/>
-                                <p>{room} Dormitorios</p>
-                            </li>
-                        </ul>
-                    </div>
-                </footer>
-            </div>
-        );
-    };
-    
     return (
         <main>
             <section className={'lg:px-32 md:px-10 px-0'}>
                 <header className={'pt-3 pb-6'}>
                     <h1 className={'text-5xl text-primary font-bold'}>
-                        Properties
+                        Propiedades
                     </h1>
                 </header>
                 <div className={'flex space-x-5'}>
@@ -149,18 +85,16 @@ export default function Properties() {
                                     </h2>
                                 </header>
                                 <div className={'flex items-center space-x-3'}>
-                                    <TextInput
+                                    <TextsInput
                                         id="price_from"
                                         placeholder="Desde"
                                         sizing={"sm"}
-                                        required
                                         type="number"
                                     />
-                                    <TextInput
+                                    <TextsInput
                                         id="price_to"
                                         placeholder="Hasta"
                                         sizing={"sm"}
-                                        required
                                         type="number"
                                     />
                                 </div>
@@ -172,66 +106,7 @@ export default function Properties() {
                         </aside>
                     </form>
                     <section className={'grid grid-cols-3 gap-x-5 gap-y-10'}>
-                        <Property
-                            image={'/assets/destacados/image3.png'}
-                            name={'Casa en venta'}
-                            tarea={'Venta'}
-                            price={'1,500,000'}
-                            parqueos={'2'}
-                            tamano={'200'}
-                            banos={'2'}
-                            room={'3'}
-                        />
-                        <Property
-                            image={'/assets/destacados/image1.png'}
-                            name={'Casa en venta'}
-                            tarea={'Venta'}
-                            price={'1,500,000'}
-                            parqueos={'2'}
-                            tamano={'200'}
-                            banos={'2'}
-                            room={'3'}
-                        />
-                        <Property
-                            image={'/assets/destacados/image1.png'}
-                            name={'Casa en venta'}
-                            tarea={'Venta'}
-                            price={'1,500,000'}
-                            parqueos={'2'}
-                            tamano={'200'}
-                            banos={'2'}
-                            room={'3'}
-                        />
-                        <Property
-                            image={'/assets/destacados/image1.png'}
-                            name={'Casa en venta'}
-                            tarea={'Venta'}
-                            price={'1,500,000'}
-                            parqueos={'2'}
-                            tamano={'200'}
-                            banos={'2'}
-                            room={'3'}
-                        />
-                        <Property
-                            image={'/assets/destacados/image1.png'}
-                            name={'Casa en venta'}
-                            tarea={'Venta'}
-                            price={'1,500,000'}
-                            parqueos={'2'}
-                            tamano={'200'}
-                            banos={'2'}
-                            room={'3'}
-                        />
-                        <Property
-                            image={'/assets/destacados/image1.png'}
-                            name={'Casa en venta'}
-                            tarea={'Venta'}
-                            price={'1,500,000'}
-                            parqueos={'2'}
-                            tamano={'200'}
-                            banos={'2'}
-                            room={'3'}
-                        />
+                        <ListOfProperties/>
                     </section>
                 </div>
             </section>
