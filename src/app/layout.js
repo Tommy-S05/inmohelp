@@ -17,12 +17,6 @@ export const metadata = {
 export default function RootLayout({children}) {
     return (
         <html lang="en">
-        <Head>
-            <link
-                href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css"
-                rel="stylesheet"
-            />
-        </Head>
         <body>
         <Navbar/>
         {children}

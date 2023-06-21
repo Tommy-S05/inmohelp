@@ -55,7 +55,7 @@ const PropertySlide = ({image, name, purpose, price, garages, area, bathrooms, b
 export async function ListOfProperties() {
     const properties = await fetchProperties();
     
-    return properties.slice(0, 5).map((property) => (
+    return properties.data.map((property) => (
             <article key={property.id}>
                 <Link href={`/properties/${property.id}`}>
                     <PropertySlide
