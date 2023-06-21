@@ -1,27 +1,17 @@
 import Contactus from "@/app/components/contactus";
+import Category from "@/app/components/Category";
 // import Image from "next/image";
 
-export default function Categories() {
-    const Category = ({name, image, alt}) => {
-        return (
-            <div className={"flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                <img
-                    className={'object-cover w-full h-full'}
-                    src={image}
-                    alt={alt}
-                />
-                <label
-                    className={"md:static md:flex md:flex-col md:text-black md:bg-inherit md:p-0 absolute text-white bg-black right-0 top-3/4 pl-8 pr-3 py-1"}>
-                    {name}
-                </label>
-                {/*<label*/}
-                {/*    className={"md:flex md:flex-col md:text-black md:-bottom-5 md:-left-1 md:w-24 md:bg-inherit  absolute right-0 top-3/4 md:top-auto text-white bg-black px-2"}>*/}
-                {/*    Departamentos*/}
-                {/*</label>*/}
-            </div>
-        );
-    }
-    
+const fetchCategories = () => {
+    return fetch('http://127.0.0.1:8000/api/property-types/all', {
+        next: {
+            revalidate: 60
+        }
+    })
+        .then(response => response.json());
+}
+export default async function Categories() {
+    const categories = await fetchCategories();
     return (
         <main>
             <section id={"categories"} className={"bg-[#EEEEEE] md:py-10 pt-10 "}>
@@ -37,91 +27,45 @@ export default function Categories() {
                     
                     <div className={"md:space-y-3"}>
                         <div className={"grid md:grid-cols-2 lg:gap-5 md:gap-3 grid-cols-1"}>
-                            <div className={"flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                <Category
-                                    name={"Departamentos"}
-                                    image={"/assets/categories/category-departamento.png"}
-                                    alt={"departamento"}
-                                />
-                            </div>
+                            <Category name={categories.data[0].name} image={categories.data[0].image}/>
                             <div className={"grid md:grid-rows-2 lg:gap-2 md:gap-1 grid-cols-1"}>
                                 <div className={"grid grid-cols-1"}>
-                                    <Category
-                                        name={"Casas"}
-                                        image={"/assets/categories/category-casa.png"}
-                                        alt={"casa"}
-                                    />
+                                    <Category name={categories.data[1].name} image={categories.data[1].image}/>
                                 </div>
                                 <div className={"grid md:grid-cols-2 md:gap-3 grid-cols-1"}>
-                                    <div className={"flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                        <Category
-                                            name={"Comercios"}
-                                            image={"/assets/categories/category-comercios.png"}
-                                            alt={"comercios"}
-                                        />
-                                    </div>
-                                    <div className={"flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                        <Category
-                                            name={"Countries"}
-                                            image={"/assets/categories/category-countries.png"}
-                                            alt={"countries"}
-                                        />
-                                    </div>
+                                    <Category name={categories.data[2].name} image={categories.data[2].image}/>
+                                    <Category name={categories.data[3].name} image={categories.data[3].image}/>
                                 </div>
                             </div>
                         </div>
                         
                         <div className={"flex flex-col md:space-y-6"}>
                             <div className={"grid grid-cols-1 md:grid-cols-12 md:gap-5"}>
-                                <div className={"col-span-4 flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                    <Category
-                                        name={"Hoteles"}
-                                        image={"/assets/categories/category-hotel.png"}
-                                        alt={"hotel"}
-                                    />
+                                <div className={"col-span-4"}>
+                                    <Category name={categories.data[4].name} image={categories.data[4].image}/>
                                 </div>
-                                <div className={"col-span-8 flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                    <Category
-                                        name={"Universidad"}
-                                        image={"/assets/categories/category-universidad.png"}
-                                        alt={"universidad"}
-                                    />
+                                <div className={"col-span-8"}>
+                                    <Category name={categories.data[5].name} image={categories.data[5].image}/>
                                 </div>
                             </div>
                             
                             <div className={"grid grip-cols-1 md:grid-cols-12 md:gap-5 "}>
-                                <div className={"md:col-span-7 flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                    <Category
-                                        name={"Almacen"}
-                                        image={"/assets/categories/category-almacenes.png"}
-                                        alt={"almacen"}
-                                    />
+                                <div className={"md:col-span-7"}>
+                                    <Category name={categories.data[6].name} image={categories.data[6].image}/>
                                 </div>
-                                <div className={"col-span-5 flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                    <Category
-                                        name={"Almacen"}
-                                        image={"/assets/categories/category-almacenes2.png"}
-                                        alt={"almacen"}
-                                    />
+                                <div className={"col-span-5"}>
+                                    <Category name={categories.data[7].name} image={categories.data[7].image}/>
                                 </div>
                             </div>
                             
-                            <div className={"grid grip-cols-1 md:grid-cols-12 md:gap-5 "}>
-                                <div className={"col-span-6 flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                    <Category
-                                        name={"Casa de Verano"}
-                                        image={"/assets/categories/category-casadeverano.png"}
-                                        alt={"casadeverano"}
-                                    />
-                                </div>
-                                <div className={"col-span-6 flex flex-col lg:space-y-1 md:space-y-0 relative"}>
-                                    <Category
-                                        name={"Barrio Cerrado"}
-                                        image={"/assets/categories/category-barriocerrado.png"}
-                                        alt={"barriocerrado"}
-                                    />
-                                </div>
-                            </div>
+                            {/*<div className={"grid grip-cols-1 md:grid-cols-12 md:gap-5 "}>*/}
+                            {/*    <div className={"col-span-6"}>*/}
+                            {/*        <Category name={categories.data[8].name} image={categories.data[8].image}/>*/}
+                            {/*    </div>*/}
+                            {/*    <div className={"col-span-6"}>*/}
+                            {/*        <Category name={categories.data[9].name} image={categories.data[9].image}/>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
