@@ -51,20 +51,20 @@ export default function Search() {
                     <Dropdown.Item onClick={() => setCurrency("USD")}>USD</Dropdown.Item>
                     <Dropdown.Item onClick={() => setCurrency("PESO")}>DOM</Dropdown.Item>
                 </Dropdown>
-                <div class="price-range p-4 flex-grow">
-                    <span class="text-sm">$</span>
-                    <span class="text-sm">{value}</span>
+                <div className="price-range p-4 flex-grow">
+                    <span className="text-sm">$</span>
+                    <span className="text-sm">{value}</span>
                     <input
-                        class="w-full accent-primary"
+                        className="w-full accent-primary"
                         type="range"
                         value={value}
                         min="0"
                         max="1000"
                         onChange={handleChange}
                     />
-                    <div class="-mt-2 flex w-full justify-between">
-                        <span class="text-sm text-gray-600">0</span>
-                        <span class="text-sm text-gray-600">1000</span>
+                    <div className="-mt-2 flex w-full justify-between">
+                        <span className="text-sm text-gray-600">0</span>
+                        <span className="text-sm text-gray-600">1000</span>
                     </div>
                 </div>
                 <Dropdown label={rooms} color="gray" pill>

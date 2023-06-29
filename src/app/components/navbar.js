@@ -66,9 +66,10 @@ export default function Navbar() {
                             <a href="">Idioma</a>
                         </li>
                     </ul>
-                    <button className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
+                    <Link href={'/login'}
+                          className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
                         Registrarse
-                    </button>
+                    </Link>
                 </div>
                 <HamburgerMenu/>
                 {/*<div>*/}

@@ -4,8 +4,7 @@ import {Inter} from "next/font/google";
 import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
-import Head from "next/head";
-import Script from "next/script";
+import PrivateRoute from "@/app/lib/privateRoute";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -18,9 +17,11 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <body>
-        <Navbar/>
-        {children}
-        <Footer/>
+        <PrivateRoute>
+            <Navbar/>
+            {children}
+            <Footer/>
+        </PrivateRoute>
         </body>
         </html>
     );
