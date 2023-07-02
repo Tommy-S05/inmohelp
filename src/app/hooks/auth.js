@@ -1,10 +1,5 @@
-// import {useEffect, useState} from "react";
-// import useSWR from "swr";
 import {useRouter} from "next/navigation";
 import UseAxios from "@/app/lib/axios";
-import {createContext, useState} from "react";
-
-// const AuthContext = createContext(null);
 
 export const useAuth = () => {
     const {AxiosInstance} = UseAxios();
@@ -13,7 +8,6 @@ export const useAuth = () => {
     
     const login = async({email, password}) => {
         await csrf();
-        // console.log(email, password, "credentials");
         await AxiosInstance.post('/login', {
             email: email,
             password: password

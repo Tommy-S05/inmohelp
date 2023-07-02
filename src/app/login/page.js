@@ -13,7 +13,7 @@ export default function Login() {
     
     //Auth Hook
     // const {user, login, loading} = useAuth({middleware: "guest"});
-    const {login, user, token} = useAuth();
+    const {login} = useAuth();
     
     //Check Loading
     // if(loading) return <div>Loading...</div>
