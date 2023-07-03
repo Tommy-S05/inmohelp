@@ -11,6 +11,15 @@ const fetchProperties = () => {
         .then(response => response.json());
 }
 
+const fetchAffordableProperties = () => {
+    return fetch('http://127.0.0.1:8000/api/affordable/properties', {
+        next: {
+            revalidate: 60
+        }
+    })
+        .then(response => response.json());
+}
+
 const PropertySlide = ({image, name, purpose, price, garages, area, bathrooms, bedrooms}) => {
     return (
         <div className="relative w-64 h-[425px]">
@@ -52,10 +61,20 @@ const PropertySlide = ({image, name, purpose, price, garages, area, bathrooms, b
     );
 };
 
-export async function ListOfProperties() {
-    const properties = await fetchProperties();
+export async function ListOfProperties({affordable}) {
+    let properties = [];
     
-    return properties.data.map((property) => (
+    if(affordable === true) {
+        const data = await fetchAffordableProperties();
+        properties = data.data;
+        console.log(properties);
+    } else {
+        const data = await fetchProperties();
+        properties = data.data;
+        console.log(properties);
+    }
+    
+    return properties?.map((property) => (
             <article key={property.id}>
                 <Link href={`/properties/${property.id}`}>
                     <PropertySlide

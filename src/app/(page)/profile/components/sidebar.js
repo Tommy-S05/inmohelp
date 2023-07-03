@@ -1,8 +1,12 @@
 'use client'
 import {Sidebar} from "flowbite-react";
 import {HiUser, HiOutlineLogout, HiCalculator, HiHeart} from 'react-icons/hi';
+import Link from "next/link";
+import {useRouter} from "next/navigation";
+
 
 export default function MultiSidebar() {
+    const router = useRouter();
     return (
         <section>
             <Sidebar aria-label="Sidebar with multi-level dropdown example">
@@ -12,10 +16,16 @@ export default function MultiSidebar() {
                             icon={HiUser}
                             label="Perfil"
                         >
-                            <Sidebar.Item href="/profile">
+                            <Sidebar.Item href="#" onClick={(e) => {
+                                e.preventDefault();
+                                router.push('/profile')
+                            }}>
                                 Información Personal
                             </Sidebar.Item>
-                            <Sidebar.Item href="/profile/edit-profile">
+                            <Sidebar.Item href="#" onClick={(e) => {
+                                e.preventDefault();
+                                router.push('/profile/edit-profile')
+                            }}>
                                 Editar Perfil
                             </Sidebar.Item>
                         </Sidebar.Collapse>
@@ -23,10 +33,16 @@ export default function MultiSidebar() {
                             icon={HiCalculator}
                             label="Finanzas"
                         >
-                            <Sidebar.Item href="/profile/financials">
+                            <Sidebar.Item href="#" onClick={(e) => {
+                                e.preventDefault();
+                                router.push('/profile/financials')
+                            }}>
                                 Ingresos/Gastos
                             </Sidebar.Item>
-                            <Sidebar.Item href="#">
+                            <Sidebar.Item href="#" onClick={(e) => {
+                                e.preventDefault();
+                                router.push('#')
+                            }}>
                                 Settings
                             </Sidebar.Item>
                         </Sidebar.Collapse>
