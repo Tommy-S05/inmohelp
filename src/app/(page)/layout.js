@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 import {Inter} from "next/font/google";
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import "node_modules/bootstrap-icons/font/bootstrap-icons.css";

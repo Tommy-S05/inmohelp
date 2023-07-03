@@ -1,8 +1,8 @@
 // 'use client';
 import Contactus from "@/app/components/contactus";
 // import {Select, TextInput} from "flowbite-react";
-import {ListOfProperties} from "@/app/properties/components/ListOfProperties";
-import {SelectInput, TextsInput} from "@/app/properties/components/Inputs";
+import {ListOfProperties} from "@/app/(page)/properties/components/ListOfProperties";
+import {SelectInput, TextsInput} from "@/app/(page)/properties/components/Inputs";
 
 const Checkbox = ({name}) => {
     return (

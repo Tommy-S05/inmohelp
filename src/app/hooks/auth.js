@@ -1,11 +1,24 @@
+'use client'
 import {useRouter} from "next/navigation";
 import UseAxios from "@/app/lib/axios";
+import useSWR from "swr";
+import {useEffect, useState} from "react";
 
 export const useAuth = () => {
     const {AxiosInstance} = UseAxios();
     const router = useRouter();
+    const [user, setUser] = useState(null);
+    
     const csrf = () => AxiosInstance.get('/sanctum/csrf-cookie');
     
+    const userAsync = async() => {
+        const authUser = await AxiosInstance.get('/api/user')
+        setUser(authUser.data);
+    }
+    
+    useEffect(() => {
+        userAsync();
+    }, [])
     const login = async({email, password}) => {
         await csrf();
         await AxiosInstance.post('/login', {
@@ -14,7 +27,8 @@ export const useAuth = () => {
         })
             .then(response => {
                 localStorage.setItem('token', response.data.token);
-                localStorage.setItem('user', response.data.data);
+                // localStorage.setItem('user', response.data.data);
+                // mutate();
                 router.push('/');
             })
             .catch(error => {
@@ -22,7 +36,8 @@ export const useAuth = () => {
             });
     }
     
-    return {login};
+    
+    return {user, login};
 }
 
 // export const useAuth = ({middleware} = {}) => {

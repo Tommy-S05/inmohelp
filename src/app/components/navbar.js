@@ -1,9 +1,13 @@
-"use client";
-
+'use client'
 import HamburgerMenu from "@/app/components/hamburger-menu";
 import Link from "next/link";
+import {useAuth} from "@/app/hooks/auth";
+import {RxAvatar} from 'react-icons/rx';
 
 export default function Navbar() {
+    const {user} = useAuth();
+    console.log(user, "user")
+    
     if(typeof window !== "undefined") {
         // your code with access to window or document object here
         const listItem = document.querySelectorAll("#header li");
@@ -66,10 +70,23 @@ export default function Navbar() {
                             <a href="">Idioma</a>
                         </li>
                     </ul>
-                    <Link href={'/login'}
-                          className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
-                        Registrarse
-                    </Link>
+                    {
+                        user ? (
+                            <Link href={'/profile'}>
+                                <RxAvatar className={'text-primary text-3xl'}/>
+                            </Link>
+                        ) : (
+                            <Link href={'/login'}
+                                  className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
+                                Iniciar Sesión
+                            </Link>
+                        )
+                    }
+                    {/*<RxAvatar className={'text-primary text-3xl'}/>*/}
+                    {/*<Link href={'/login'}*/}
+                    {/*      className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">*/}
+                    {/*    Registrarse*/}
+                    {/*</Link>*/}
                 </div>
                 <HamburgerMenu/>
                 {/*<div>*/}

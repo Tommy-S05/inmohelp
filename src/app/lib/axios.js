@@ -9,7 +9,7 @@ export default function UseAxios() {
     const AxiosInstance = axios.create({
         baseURL: 'http://localhost:8000',
         headers: {
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/json',
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest'
         },

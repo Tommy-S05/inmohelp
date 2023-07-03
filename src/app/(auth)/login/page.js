@@ -1,5 +1,5 @@
 "use client";
-import "../borrar.css";
+// import "../../borrar.css";
 import Link from "next/link";
 import {useState} from "react";
 import {useAuth} from "@/app/hooks/auth";

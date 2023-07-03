@@ -1,10 +1,9 @@
 'use client'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {financials} from "@/app/hooks/submit-financial-data";
 
-
-export default function DefaultAccordion({categories}) {
+export default function DefaultAccordion({categories, accounts}) {
     const {submitFinancialData} = financials();
     const {
         register,
@@ -13,7 +12,6 @@ export default function DefaultAccordion({categories}) {
         getValues,
         formState: {errors}
     } = useForm();
-    
     
     const onSubmit = async data => {
         
@@ -39,21 +37,20 @@ export default function DefaultAccordion({categories}) {
                 }
             }
         }
-        // Mostrar el arreglo de subcategorías en la consola
-        // console.log({total_incomes, total_expenses, subCategories});
+        
         await submitFinancialData({total_incomes, total_expenses, subCategories});
     };
     
-    
-    // const handleInputChange = (e) => {
-    //     const {name, value} = e.target;
-    //     // Verifica si el valor del campo no está vacío
-    //     if(value.trim() !== "") {
-    //         // Registra el campo con el nombre proporcionado y establece el valor
-    //         setValue(name, value);
-    //     }
-    // };
-    
+    useEffect(() => {
+        accounts?.map((account) => {
+            account.account_transactions?.map((transaction) => {
+                // Establecer el valor del campo con el nombre "amount-{id}" con el valor de la transacción
+                // let amount = parseFloat(transaction.amount).toFixed(2);
+                let amount = transaction.amount.toFixed(2);
+                setValue(`amount-${transaction.sub_category_id}`, amount);
+            });
+        });
+    }, [accounts]);
     const AccordionT = ({title, content}) => {
         const [isOpen, setIsOpen] = useState(false);
         return (
@@ -83,7 +80,7 @@ export default function DefaultAccordion({categories}) {
         <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
                 {
-                    categories.map((category, index) => {
+                    categories?.map((category, index) => {
                         return (
                             <AccordionT key={category.id} title={category.name} content={category.subcategories}/>
                         )
