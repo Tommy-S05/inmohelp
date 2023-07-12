@@ -1,9 +1,11 @@
+'use client';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBath, faBed, faCarSide, faVectorSquare} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import {useEffect, useState} from "react";
 
 const fetchProperties = () => {
-    return fetch('http://127.0.0.1:8000/api/properties', {
+    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/properties`, {
         next: {
             revalidate: 60
         }
@@ -12,7 +14,7 @@ const fetchProperties = () => {
 }
 
 const fetchAffordableProperties = () => {
-    return fetch('http://127.0.0.1:8000/api/affordable/properties', {
+    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/affordable/properties`, {
         next: {
             revalidate: 60
         }
@@ -61,18 +63,25 @@ const PropertySlide = ({image, name, purpose, price, garages, area, bathrooms, b
     );
 };
 
-export async function ListOfProperties({affordable}) {
-    let properties = [];
+
+export function ListOfProperties({affordable}) {
+    const [properties, setProperties] = useState([]);
     
-    if(affordable === true) {
-        const data = await fetchAffordableProperties();
-        properties = data.data;
-        console.log(properties);
-    } else {
-        const data = await fetchProperties();
-        properties = data.data;
-        console.log(properties);
-    }
+    
+    useEffect(() => {
+        const handleAffordable = async() => {
+            if(affordable === true) {
+                const data = await fetchAffordableProperties();
+                setProperties(data.data);
+                console.log(properties);
+            } else {
+                const data = await fetchProperties();
+                setProperties(data.data);
+                console.log(properties);
+            }
+        }
+        handleAffordable();
+    }, [affordable])
     
     return properties?.map((property) => (
             <article key={property.id}>

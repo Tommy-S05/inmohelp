@@ -8,9 +8,8 @@ export default function ProfileFinancials() {
     const [categories, setCategories] = useState([]);
     const [accounts, setAccount] = useState([]);
     const {getAccountTransactions} = Account();
-    
-    
     const {getCategories, loading} = useCategories();
+    
     useEffect(() => {
         const handleCategories = async() => {
             const data = await getCategories();
