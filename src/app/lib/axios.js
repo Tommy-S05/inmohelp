@@ -9,7 +9,7 @@ export default function UseAxios() {
         // baseURL: 'http://localhost:8000',
         baseURL: process.env.NEXT_PUBLIC_API_URL,
         headers: {
-            // 'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest'
         },
@@ -25,7 +25,7 @@ export default function UseAxios() {
         return config;
     }, function(error) {
         console.log(error, "error");
-        if(error.response.status === 401) {
+        if(error?.response?.status === 401) {
             router.push('/login');
         }
     });
