@@ -1,3 +1,4 @@
+"use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBath,
@@ -6,21 +7,25 @@ import {
   faVectorSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const fetchProperties = () => {
-  return fetch("http://127.0.0.1:8000/api/properties", {
+const fetchProperties = async () => {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/properties`, {
     next: {
       revalidate: 60,
     },
   }).then((response) => response.json());
 };
 
-const fetchAffordableProperties = () => {
-  return fetch("http://127.0.0.1:8000/api/affordable/properties", {
-    next: {
-      revalidate: 60,
-    },
-  }).then((response) => response.json());
+const fetchAffordableProperties = async () => {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/affordable/properties`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    }
+  ).then((response) => response.json());
 };
 
 const PropertySlide = ({
@@ -80,20 +85,28 @@ const PropertySlide = ({
   );
 };
 
-export function ListOfProperties({ affordable }) {
-  // let properties = [];
+export function ListOfProperties({ affordable, newProperties }) {
+  const [properties, setProperties] = useState([]);
 
-  // if(affordable === true) {
-  //     const data = await fetchAffordableProperties();
-  //     properties = data.data;
-  //     console.log(properties);
-  // } else {
-  //     const data = await fetchProperties();
-  //     properties = data.data;
-  //     console.log(properties);
-  // }
+  useEffect(() => {
+    const handleAffordable = async () => {
+      if (affordable === true) {
+        const data = await fetchAffordableProperties();
+        setProperties(data.data);
+        console.log(properties);
+      } else {
+        const data = await fetchProperties();
+        setProperties(data.data);
+        console.log(properties);
+      }
+    };
+    handleAffordable();
+  }, [affordable]);
 
-  let properties = [];
+  useEffect(() => {
+    setProperties(newProperties);
+  }, [newProperties]);
+
   return properties?.map((property) => (
     <article key={property.id}>
       <Link href={`/properties/${property.id}`}>

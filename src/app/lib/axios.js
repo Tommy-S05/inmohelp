@@ -1,5 +1,4 @@
 import axios from "axios";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {useRouter} from "next/navigation";
 import {useAuth} from "@/app/hooks/auth";
 
@@ -7,9 +6,10 @@ export default function UseAxios() {
     const router = useRouter();
     
     const AxiosInstance = axios.create({
-        baseURL: 'http://localhost:8000',
+        // baseURL: 'http://localhost:8000',
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
         headers: {
-            // 'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest'
         },
@@ -24,7 +24,8 @@ export default function UseAxios() {
         }
         return config;
     }, function(error) {
-        if(error.response.status === 401) {
+        console.log(error, "error");
+        if(error?.response?.status === 401) {
             router.push('/login');
         }
     });

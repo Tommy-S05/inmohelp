@@ -16,9 +16,9 @@ export const useAuth = () => {
         setUser(authUser.data);
     }
     
-    useEffect(() => {
-        userAsync();
-    }, [])
+    // useEffect(() => {
+    //     userAsync();
+    // }, [])
     const login = async({email, password}) => {
         await csrf();
         await AxiosInstance.post('/login', {
