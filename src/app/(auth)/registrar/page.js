@@ -1,5 +1,4 @@
 "use client";
-import "../../borrar.css";
 
 export default function registrar() {
     return (
