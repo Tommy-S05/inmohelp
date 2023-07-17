@@ -22,12 +22,15 @@ export default function DefaultAccordion({categories, accounts}) {
         // Recorrer los valores del formulario
         for(const [key, value] of Object.entries(data)) {
             
-            // Verificar si el nombre del campo comienza con "expense-"
+            // Verificar si el nombre del campo comienza con "amount-"
             if(key.startsWith("amount-")) {
                 // Obtener el ID de la subcategoría del nombre del campo
                 const subCategory_id = Number(key.split("-")[1]);
                 const amount = Number(value);
-                if(!isNaN(amount) && value.trim() !== "") {
+                if(isNaN(amount) || value.trim() === "") {
+                    const newAmount = 0.00;
+                    subCategories.push({subCategory_id, newAmount});
+                } else if(!isNaN(amount) && value.trim() !== "") {
                     subCategories.push({subCategory_id, amount});
                     if(subCategory_id >= 1 && subCategory_id <= 6) {
                         total_incomes += amount;
@@ -37,7 +40,9 @@ export default function DefaultAccordion({categories, accounts}) {
                 }
             }
         }
-        
+        // console.log(subCategories)
+        // console.log('total_incomes: ', total_incomes)
+        // console.log('total_expenses: ', total_expenses)
         await submitFinancialData({total_incomes, total_expenses, subCategories});
     };
     
@@ -66,7 +71,10 @@ export default function DefaultAccordion({categories, accounts}) {
                                     <div key={subcategory.id} className={'flex space-x-8'}>
                                         <h2>{subcategory.name}</h2>
                                         <input type={"number"}
-                                               defaultValue={null} {...register(`amount-${subcategory.id}`)}/>
+                                               defaultValue={0.00}
+                                               {...register(`amount-${subcategory.id}`)}
+                                               onWheel={(event) => event.target.blur()}
+                                        />
                                     </div>
                                 )
                             })

@@ -120,7 +120,7 @@ export default function Home() {
                 </section>
                 <section>
                     <div className="bg-primary w-72 p-5 rounded-br-3xl ">
-                        <h2 className="text-5xl text-white pl-10">Detalles</h2>
+                        <h2 className="text-5xl text-white pl-5">Destacados</h2>
                     </div>
                     <div className=" max-w-screen-lg mx-auto p-5 cursor-pointer">
                         <Slider {...settings}>

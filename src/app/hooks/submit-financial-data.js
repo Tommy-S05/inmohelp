@@ -7,10 +7,10 @@ export const financials = () => {
     const csrf = () => AxiosInstance.get('/sanctum/csrf-cookie');
     const submitFinancialData = async({...props}) => {
         await csrf();
-        await AxiosInstance.post('/api/account', {...props})
+        await AxiosInstance.put('/api/account', {...props})
             .then(response => {
-                console.log(response, "response");
-                // router.back();
+                // console.log(response, "response");
+                router.refresh();
             })
             .catch(error => {
                 console.log(error, "error");

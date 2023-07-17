@@ -36,8 +36,34 @@ export const useAuth = () => {
             });
     }
     
+    //register
+    const registerAuth = async({...props}) => {
+        await csrf();
+        await AxiosInstance.post('/register', props.data)
+            .then(response => {
+                console.log("response register: ", response.data);
+                localStorage.setItem('token', response.data.token);
+                router.push('/profile/financials');
+            })
+            .catch(error => {
+                console.log("error register: ", error.response);
+                // if(error.response.status !== 422) throw error
+                
+                // setErrors(Object.values(error.response.data.errors).flat());
+            });
+    }
     
-    return {user, login};
+    //Logout
+    const logout = async() => {
+        await AxiosInstance.post('/logout')
+            .then(() => {
+                localStorage.removeItem('token');
+                router.push('/');
+            })
+    }
+    
+    
+    return {user, login, registerAuth, logout};
 }
 
 // export const useAuth = ({middleware} = {}) => {
@@ -62,7 +88,7 @@ export const useAuth = () => {
 //     const csrf = () => AxiosInstance.get('/sanctum/csrf-cookie');
 //
 //     //Login
-//     const login = async(setErrors, email, password) => {
+//     const login = async({setErrors, email, password}) => {
 //         // setErrors([]);
 //         await csrf();
 //
@@ -98,7 +124,7 @@ export const useAuth = () => {
 //     }
 //
 //     //register
-//     const register = async(setErrors, ...props) => {
+//     const register = async({setErrors, ...props}) => {
 //         await csrf();
 //         await AxiosInstance.post('/api/register', props)
 //             .then(() => mutate() && router.push('/'))

@@ -63,7 +63,7 @@ export default function Footer() {
                                     <a href="#" className="hover:underline ">Venta</a>
                                 </li>
                                 <li className="">
-                                    <a href="#" className="hover:underline ">Indices de Precio</a>
+                                    <Link href={'/price-index'} className="hover:underline ">Indices de Precio</Link>
                                 </li>
                                 <li className="">
                                     <a href="#" className="hover:underline ">Tabla de Amortización</a>

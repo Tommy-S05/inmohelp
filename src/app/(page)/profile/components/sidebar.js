@@ -1,12 +1,17 @@
 'use client'
 import {Sidebar} from "flowbite-react";
 import {HiUser, HiOutlineLogout, HiCalculator, HiHeart} from 'react-icons/hi';
-import Link from "next/link";
 import {useRouter} from "next/navigation";
+import {useAuth} from "@/app/hooks/auth";
 
 
 export default function MultiSidebar() {
     const router = useRouter();
+    const {logout} = useAuth();
+    const handleLogout = async(e) => {
+        e.preventDefault();
+        await logout();
+    }
     return (
         <section>
             <Sidebar aria-label="Sidebar with multi-level dropdown example">
@@ -41,9 +46,9 @@ export default function MultiSidebar() {
                             </Sidebar.Item>
                             <Sidebar.Item href="#" onClick={(e) => {
                                 e.preventDefault();
-                                router.push('#')
+                                router.push('/profile/financials/settings')
                             }}>
-                                Settings
+                                Configuraciones
                             </Sidebar.Item>
                         </Sidebar.Collapse>
                         <Sidebar.Item
@@ -56,10 +61,11 @@ export default function MultiSidebar() {
                         </Sidebar.Item>
                         <Sidebar.Item
                             href="#"
+                            onClick={handleLogout}
                             icon={HiOutlineLogout}
                         >
                             <p>
-                                Sign Out
+                                Cerrar sesión
                             </p>
                         </Sidebar.Item>
                     </Sidebar.ItemGroup>

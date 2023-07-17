@@ -31,14 +31,16 @@ export default function Contactus() {
                 </ul>
             </div>
             
-            <form
-                className={"bg-white shadow lg:w-[750px] py-10 md:px-10 px-5 rounded-lg"}
+            <form action={"https://formspree.io/f/xleyddre"}
+                  method={"POST"}
+                  className={"bg-white shadow lg:w-[750px] py-10 md:px-10 px-5 rounded-lg"}
             >
                 <div className="md:flex md:space-x-5">
                     <div className="mb-2 block w-full">
                         <label className={"text-white text-md font-bold"}>Nombre</label>
                         <TextInput
-                            id="email4"
+                            id="name"
+                            name={"name"}
                             placeholder="Pedro"
                             sizing={"lg"}
                             required
@@ -48,7 +50,8 @@ export default function Contactus() {
                     <div className="mb-2 block  w-full">
                         <label className={"text-white text-md font-bold"}>Apellido</label>
                         <TextInput
-                            id="email4"
+                            id="lastname"
+                            name={"lastname"}
                             placeholder="Almonte"
                             sizing={"lg"}
                             required
@@ -60,7 +63,8 @@ export default function Contactus() {
                     <div className="mb-2 block w-full">
                         <label className={"text-white text-md font-bold"}>Email</label>
                         <TextInput
-                            id="email4"
+                            id={"email"}
+                            name={"email"}
                             placeholder="example@gmail.com"
                             required
                             sizing={"lg"}
@@ -70,7 +74,8 @@ export default function Contactus() {
                     <div className="mb-2 block w-full">
                         <label className={"text-white text-md font-bold"}>Telefono</label>
                         <TextInput
-                            id="email4"
+                            id="email"
+                            name={"phone"}
                             placeholder="8097862310"
                             sizing={"lg"}
                             required
@@ -84,6 +89,7 @@ export default function Contactus() {
                     </div>
                     <Textarea
                         id="comment"
+                        name={"comment"}
                         placeholder="Message"
                         required
                         rows={4}
@@ -91,7 +97,8 @@ export default function Contactus() {
                     />
                 </div>
                 <div className={"flex "}>
-                    <button className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
+                    <button type={'submit'}
+                            className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">
                         Contactar
                     </button>
                 </div>

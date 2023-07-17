@@ -28,23 +28,18 @@ const fetchAffordableProperties = () => {
     ).then((response) => response.json());
 };
 
-const PropertySlide = ({
-                           image,
-                           name,
-                           purpose,
-                           price,
-                           garages,
-                           area,
-                           bathrooms,
-                           bedrooms,
-                       }) => {
+const PropertySlide = ({image, name, purpose, price, garages, area, bathrooms, bedrooms,}) => {
+    let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
     return (
         <div className="relative w-64 h-[425px]">
             <img className="h-full object-cover w-64" src={image} alt="Propiedad"/>
             <footer className="flex justify-center w-full absolute bottom-0 ">
                 <div className=" p-3 bg-white bg-opacity-80 w-full h-36 relative rounded-tl-xl">
                     <header className="absolute right-0 -top-5 text-white bg-primary p-2 rounded-tr-xl rounded-bl-xl">
-                        ${price}/RD
+                        {USDollar.format(price)} /RD
                     </header>
                     <p className="text-xs py-2">{purpose}</p>
                     <h1 className="text-sm py-1">{name}</h1>
@@ -62,7 +57,7 @@ const PropertySlide = ({
                                 icon={faVectorSquare}
                                 className={"text-primary w-[15px]"}
                             />
-                            <p>{area} m</p>
+                            <p>{area} m<sup>2</sup></p>
                         </li>
                         <li>
                             <FontAwesomeIcon
@@ -76,7 +71,7 @@ const PropertySlide = ({
                                 icon={faBed}
                                 className={"text-primary w-[15px]"}
                             />
-                            <p>{bedrooms} Dormitorios</p>
+                            <p>{bedrooms} Habitaciones</p>
                         </li>
                     </ul>
                 </div>
@@ -88,20 +83,20 @@ const PropertySlide = ({
 export function ListOfProperties({affordable, newProperties}) {
     const [properties, setProperties] = useState([]);
     
-    useEffect(() => {
-        const handleAffordable = async() => {
-            if(affordable === true) {
-                const data = await fetchAffordableProperties();
-                setProperties(data.data);
-                console.log(properties);
-            } else {
-                const data = await fetchProperties();
-                setProperties(data.data);
-                console.log(properties);
-            }
-        };
-        handleAffordable();
-    }, [affordable]);
+    // useEffect(() => {
+    //     const handleAffordable = async() => {
+    //         if(affordable === true) {
+    //             const data = await fetchAffordableProperties();
+    //             setProperties(data.data);
+    //             console.log(properties);
+    //         } else {
+    //             const data = await fetchProperties();
+    //             setProperties(data.data);
+    //             console.log(properties);
+    //         }
+    //     };
+    //     handleAffordable();
+    // }, [affordable]);
     
     useEffect(() => {
         setProperties(newProperties);

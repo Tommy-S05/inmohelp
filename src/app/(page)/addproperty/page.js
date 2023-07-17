@@ -42,7 +42,7 @@ export default function AddProperty() {
                     {/* Informacion Cliente */}
                     <section className={'space-y-5'}>
                         <h1 className={'text-3xl'}>
-                            Client Info
+                            Informacion Del Cliente
                         </h1>
                         <div className="grid gap-4 md:grid-cols-2 grid-cols-1">
                             <TextInput
@@ -104,29 +104,26 @@ export default function AddProperty() {
                                 type="text"
                             />
                             <TextInput
-                                id="email4"
-                                placeholder="Coreo Electronico"
-                                sizing={"lg"}
-                                required
-                                type="email"
-                            />
-                            
-                            <TextInput
-                                id="email4"
+                                id="price"
                                 placeholder="Precio"
                                 sizing={"lg"}
                                 required
                                 type="number"
                             />
-                            
                             <TextInput
-                                id="email4"
+                                id="bethrooms"
                                 placeholder="Habitaciones"
                                 sizing={"lg"}
                                 required
                                 type="number"
                             />
-                            
+                            <TextInput
+                                id="bathrooms"
+                                placeholder="Baños"
+                                sizing={"lg"}
+                                required
+                                type="number"
+                            />
                             <TextInput
                                 id="email4"
                                 placeholder="Parqueos"

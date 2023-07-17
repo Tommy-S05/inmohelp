@@ -1,23 +1,19 @@
 "use client";
 import Contactus from "@/app/components/contactus";
-// import {Select, TextInput} from "flowbite-react";
 import {ListOfProperties} from "@/app/(page)/properties/components/ListOfProperties";
-import {
-    SelectInput,
-    TextsInput,
-} from "@/app/(page)/properties/components/Inputs";
+import {SelectInput, TextsInput} from "@/app/(page)/properties/components/Inputs";
 import {useEffect, useState} from "react";
 import {useForm, FormProvider} from "react-hook-form";
 import {Button} from "flowbite-react";
 
+
 export default function Properties() {
     const methods = useForm();
-    // const [filter, setFilter] = useState({});
     
     const [properties, setProperties] = useState([]);
-    const [active, setActive] = useState("sale");
+    const [active, setActive] = useState("venta");
     
-    const [affordable, setAffordable] = useState(false);
+    const [affordable, setAffordable] = useState(true);
     
     const handleAffordable = () => {
         setAffordable((affordable) => !affordable);
@@ -26,6 +22,11 @@ export default function Properties() {
     const handlePurpose = (value) => {
         setActive(value);
         methods.setValue("purpose", value);
+    };
+    
+    const fetchProperties = () => {
+        return fetch(`http://localhost:8000/api/properties?purpose=${active}&affordable=${affordable}`)
+            .then((response) => response.json());
     };
     const filterProperties = async(filter) => {
         const queryFilters = `?purpose=${filter.purpose}&property_type=${filter.property_type}&area=${filter.area}&province=${filter.province}&neighborhood=${filter.neighborhood}&bedrooms=${filter.bedrooms}&garages=${filter.garages}&bathrooms=${filter.bathrooms}&min_price=${filter.min_price}&max_price=${filter.max_price}`;
@@ -44,9 +45,8 @@ export default function Properties() {
         setProperties(data.data);
     };
     
-    const onSubmit = (data) => {
-        const newProperties = filterProperties(data);
-        // setFilter(data);
+    const onSubmit = async(data) => {
+        await filterProperties(data);
     };
     
     const Checkbox = ({name}) => {
@@ -70,7 +70,12 @@ export default function Properties() {
     };
     
     useEffect(() => {
-        methods.setValue("purpose", "sale");
+        methods.setValue("purpose", "venta");
+        const handleProperties = async() => {
+            const newProperties = await fetchProperties();
+            setProperties(newProperties.data)
+        }
+        handleProperties();
     }, []);
     
     return (
@@ -96,7 +101,7 @@ export default function Properties() {
                                             htmlFor="default-checkbox"
                                             className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                         >
-                                            Para ti
+                                            Para tí
                                         </label>
                                     </div>
                                     <header>
@@ -107,17 +112,17 @@ export default function Properties() {
                                             <button
                                                 outline
                                                 className={`${
-                                                    active === "sale" && " bg-primary text-white"
+                                                    active === "venta" && " bg-primary text-white"
                                                 } p-3 border rounded-l-lg hover:bg-primary/60  `}
-                                                onClick={() => handlePurpose("sale")}
+                                                onClick={() => handlePurpose("venta")}
                                             >
                                                 <p>Venta</p>
                                             </button>
                                             <button
                                                 className={`${
-                                                    active === "rent" && " bg-primary text-white"
+                                                    active === "alquiler" && " bg-primary text-white"
                                                 } p-3 border rounded-r-lg mx-1 hover:bg-primary/60 `}
-                                                onClick={() => handlePurpose("rent")}
+                                                onClick={() => handlePurpose("alquiler")}
                                             >
                                                 <p>Alquiler</p>
                                             </button>
@@ -126,7 +131,7 @@ export default function Properties() {
                                 </div>
                                 <div className={"w-80"}>
                                     <SelectInput
-                                        name={"Tipo de propiedad"}
+                                        name={"Tipo de inmueble"}
                                         inputName={"property_type"}
                                         options={["Casa", "Apartamento", "Solar", "Local"]}
                                     />
@@ -165,11 +170,11 @@ export default function Properties() {
                                 <div className={"flex items-center space-x-8"}>
                                     <div className={"w-36 space-y-3"}>
                                         <header>
-                                            <h2 className={"text-lg"}>Area</h2>
+                                            <h2 className={"text-lg"}>Área</h2>
                                         </header>
                                         <TextsInput
                                             id="area"
-                                            placeholder="100"
+                                            placeholder={`Área (m${'\u00B2'})`}
                                             sizing={"sm"}
                                             type="number"
                                             inputName={"area"}

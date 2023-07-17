@@ -1,35 +1,45 @@
-"use client";
+'use client'
 import Link from "next/link";
-import {useState} from "react";
+import {useForm} from "react-hook-form";
 import {useAuth} from "@/app/hooks/auth";
-// import UseAxios from "@/app/lib/axios";
 
-export default function Login() {
-    //States
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    // const [errors, setErrors] = useState([]);
+export default function registrar() {
+    const {registerAuth} = useAuth();
+    const {
+        register,
+        handleSubmit,
+        getValues
+    } = useForm()
     
-    //Auth Hook
-    // const {user, login, loading} = useAuth({middleware: "guest"});
-    const {login} = useAuth();
-    
-    //Check Loading
-    // if(loading) return <div>Loading...</div>
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        // await login({setErrors, email, password});
-        await login({email, password});
+    const onSubmit = async(data) => {
+        const name = data.name;
+        const email = data.email;
+        const password = data.password;
+        // await registerAuth({name, email, password})
+        await registerAuth({data})
     }
-    
     return (
-        <section className="flex flex-col col items-center mt-32">
+        <section className="flex flex-col col items-center mt-7">
             <div
                 className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <h5 className="flex text-xl justify-center font-medium text-gray-900 dark:text-white">
-                        INICIAR SESIÓN
+                        REGÍSTRATE
                     </h5>
+                    <div>
+                        <label
+                            htmlFor="text"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Nombre completo
+                        </label>
+                        <input
+                            {...register('name', {required: true})}
+                            type="text"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Pedro"
+                        ></input>
+                    </div>
                     <div>
                         <label
                             htmlFor="email"
@@ -38,16 +48,11 @@ export default function Login() {
                             Correo Electrónico
                         </label>
                         <input
+                            {...register('email', {required: true})}
                             type="email"
-                            name="email"
-                            id="email"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             placeholder="name@company.com"
-                            required
-                            value={email}
-                            autoFocus={true}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+                        ></input>
                     </div>
                     <div>
                         <label
@@ -57,47 +62,36 @@ export default function Login() {
                             Contraseña
                         </label>
                         <input
+                            {...register('password', {required: true})}
                             type="password"
-                            name="password"
-                            id="password"
-                            placeholder="••••••••"
+                            placeholder="**********"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        ></input>
                     </div>
-                    <div className="flex items-start">
-                        <div className="flex items-start">
-                            <div className="flex items-center h-5">
-                                <input
-                                    id="remember"
-                                    type="checkbox"
-                                    value=""
-                                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                                ></input>
-                            </div>
-                            <label
-                                htmlFor="remember"
-                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                            >
-                                Recuerdame
-                            </label>
-                        </div>
-                        <a
-                            href="#"
-                            className="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
-                        >
-                            ¿Olvidaste tu contraseña?
-                        </a>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <label*/}
+                    {/*        htmlFor="password"*/}
+                    {/*        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"*/}
+                    {/*    >*/}
+                    {/*        Confirmar contraseña*/}
+                    {/*    </label>*/}
+                    {/*    <input*/}
+                    {/*        {...register('confirm_password', {required: true})}*/}
+                    {/*        type="password"*/}
+                    {/*        placeholder="**********"*/}
+                    {/*        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"*/}
+                    {/*    ></input>*/}
+                    {/*</div>*/}
+                    
                     <button
                         type="submit"
                         className="w-full text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                        INICIAR
+                        REGISTRAR
                     </button>
                     <button
                         type="submit"
+                        onClick={event => event.preventDefault()}
                         className=" flex w-full justify-center  text-primary  border-2 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         Continuar con Google{" "}
@@ -109,12 +103,12 @@ export default function Login() {
                         />
                     </button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                        ¿No estás registrado?{" "}
+                        ¿Ya tienes una cuenta?{" "}
                         <Link
-                            href="/register"
+                            href="/login"
                             className="text-blue-700 hover:underline dark:text-blue-500"
                         >
-                            Regístrate
+                            Iniciar sesión
                         </Link>
                     </div>
                 </form>
