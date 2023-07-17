@@ -29,7 +29,7 @@ export default function SelectComponent() {
   };
 
   return (
-    <main className="flex items-center">
+    <main className="flex items-center ">
       <Select
         className="w-10/12"
         options={filteredOptions}
