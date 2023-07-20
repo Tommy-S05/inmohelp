@@ -24,5 +24,26 @@ export const financials = () => {
             console.log(e);
         }
     }
-    return {submitFinancialData, getFinancialData};
+    
+    const submitFinancialSettings = async({...props}, setLoading) => {
+        setLoading(true);
+        await csrf();
+        await AxiosInstance.put('/api/settings', {...props})
+            .then(response => {
+                router.refresh();
+            })
+            .catch(error => {
+                console.log(error, "error");
+            })
+            .finally(() => setLoading(false));
+    }
+    
+    const getFinancialSetting = async() => {
+        try {
+            return await AxiosInstance.get('/api/settings');
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    return {submitFinancialData, getFinancialData, submitFinancialSettings, getFinancialSetting};
 }

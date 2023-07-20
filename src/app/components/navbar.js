@@ -1,13 +1,12 @@
 "use client";
 import HamburgerMenu from "@/app/components/hamburger-menu";
 import Link from "next/link";
-import {useAuth} from "@/app/hooks/auth";
-import {RxAvatar} from "react-icons/rx";
+// import {useAuth} from "@/app/hooks/auth";
+import MenuUsuario from "@/app/components/menu-user";
 
 export default function Navbar() {
-    const {user} = useAuth();
+    // const {user} = useAuth();
     const token = localStorage.getItem("token");
-    console.log(user, "user");
     
     if(typeof window !== "undefined") {
         // your code with access to window or document object here
@@ -73,19 +72,26 @@ export default function Navbar() {
                         <li>
                             <a href="">Idioma</a>
                         </li>
+                        {token ? (
+                            <li className="z-10">
+                                <div
+                                    className="flex justify-center py-2 pl-3 pr-4 text-white rounded underline hover:text-naranja md:hover:bg-transparent md:p-0 md:transition md:ease-in-out md:delay-50 md:hover:-translate-y-1 md:hover:scale-105 md:duration-100 ">
+                                    <MenuUsuario className={'absolute'} token={token}/>
+                                </div>
+                            </li>
+                            // <Link href={"/profile"}>
+                            //     <RxAvatar className={"text-primary text-3xl"}/>
+                            // </Link>
+                        ) : (
+                            <Link
+                                href={"/login"}
+                                className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80"
+                            >
+                                Iniciar Sesión
+                            </Link>
+                        )}
                     </ul>
-                    {token ? (
-                        <Link href={"/profile"}>
-                            <RxAvatar className={"text-primary text-3xl"}/>
-                        </Link>
-                    ) : (
-                        <Link
-                            href={"/login"}
-                            className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80"
-                        >
-                            Iniciar Sesión
-                        </Link>
-                    )}
+                    
                     {/*<RxAvatar className={'text-primary text-3xl'}/>*/}
                     {/*<Link href={'/login'}*/}
                     {/*      className="bg-primary p-3 text-white rounded-tl-xl rounded-br-xl hover:bg-primary/80">*/}

@@ -8,14 +8,17 @@ import {Button} from "flowbite-react";
 
 
 export default function Properties() {
+    const token = localStorage.getItem("token");
     const methods = useForm();
     
     const [properties, setProperties] = useState([]);
     const [active, setActive] = useState("venta");
     
-    const [affordable, setAffordable] = useState(true);
+    const [affordable, setAffordable] = useState(!!token);
     
-    const handleAffordable = () => {
+    const handleAffordable = (event) => {
+        // console.log('event: ', event.target.checked);
+        methods.setValue("affordable", !affordable);
         setAffordable((affordable) => !affordable);
     };
     
@@ -24,14 +27,24 @@ export default function Properties() {
         methods.setValue("purpose", value);
     };
     
-    const fetchProperties = () => {
-        return fetch(`http://localhost:8000/api/properties?purpose=${active}&affordable=${affordable}`)
+    const initialProperties = () => {
+        let params = `?purpose=${active}${token ? `&affordable=${affordable}` : ""}`;
+        console.log(params);
+        if(token) {
+            return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/properties/affordable${params}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((response) => response.json());
+        }
+        return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/properties${params}`)
             .then((response) => response.json());
     };
     const filterProperties = async(filter) => {
         const queryFilters = `?purpose=${filter.purpose}&property_type=${filter.property_type}&area=${filter.area}&province=${filter.province}&neighborhood=${filter.neighborhood}&bedrooms=${filter.bedrooms}&garages=${filter.garages}&bathrooms=${filter.bathrooms}&min_price=${filter.min_price}&max_price=${filter.max_price}`;
         const data = await fetch(
-            `http://localhost:8000/api/properties${queryFilters}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/properties${queryFilters}`,
             {
                 next: {
                     revalidate: 60,
@@ -40,13 +53,39 @@ export default function Properties() {
         ).then((response) => response.json());
         console.log(
             data,
-            `http://localhost:8000/api/properties${queryFilters}`
+            `${process.env.NEXT_PUBLIC_API_URL}/api/properties${queryFilters}`
+        );
+        setProperties(data.data);
+    };
+    
+    const filterAffordableProperties = async(filter) => {
+        console.log('affordable', filter.affordable);
+        const queryFilters = `?affordable=${filter.affordable}&purpose=${filter.purpose}&property_type=${filter.property_type}&area=${filter.area}&province=${filter.province}&neighborhood=${filter.neighborhood}&bedrooms=${filter.bedrooms}&garages=${filter.garages}&bathrooms=${filter.bathrooms}&min_price=${filter.min_price}&max_price=${filter.max_price}`;
+        const data = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/properties/affordable${queryFilters}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                next: {
+                    revalidate: 60,
+                },
+            }
+        ).then((response) => response.json());
+        console.log(
+            data,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/properties/affordable${queryFilters}`
         );
         setProperties(data.data);
     };
     
     const onSubmit = async(data) => {
-        await filterProperties(data);
+        console.log(data);
+        if(token) {
+            await filterAffordableProperties(data);
+        } else {
+            await filterProperties(data);
+        }
     };
     
     const Checkbox = ({name}) => {
@@ -71,8 +110,9 @@ export default function Properties() {
     
     useEffect(() => {
         methods.setValue("purpose", "venta");
+        methods.setValue('affordable', affordable);
         const handleProperties = async() => {
-            const newProperties = await fetchProperties();
+            const newProperties = await initialProperties();
             setProperties(newProperties.data)
         }
         handleProperties();
@@ -89,44 +129,53 @@ export default function Properties() {
                         <form onSubmit={methods.handleSubmit(onSubmit)}>
                             <aside className={"space-y-5 border-r-2 border-solid pb-3 pr-3"}>
                                 <div className={"space-y-3"}>
-                                    <div className="flex items-center">
-                                        <input
-                                            id="default-checkbox"
-                                            type="checkbox"
-                                            checked={affordable}
-                                            onChange={handleAffordable}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                        />
-                                        <label
-                                            htmlFor="default-checkbox"
-                                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                        >
-                                            Para tí
-                                        </label>
-                                    </div>
+                                    {
+                                        token && (
+                                            <div className="flex items-center">
+                                                <button
+                                                    className={`${
+                                                        affordable === true && "bg-primary text-white border-primary"
+                                                    } w-80 text-xl p-3 border-4 rounded-l-lg hover:bg-primary/60 `}
+                                                    onClick={(e) => handleAffordable(e)}
+                                                >
+                                                    <p>Para tí</p>
+                                                </button>
+                                                {/*<input*/}
+                                                {/*    id="default-checkbox"*/}
+                                                {/*    type="checkbox"*/}
+                                                {/*    checked={affordable}*/}
+                                                {/*    onChange={() => setAffordable((affordable) => !affordable)}*/}
+                                                {/*    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"*/}
+                                                {/*/>*/}
+                                                {/*<label*/}
+                                                {/*    htmlFor="default-checkbox"*/}
+                                                {/*    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"*/}
+                                                {/*>*/}
+                                                {/*    Para tí*/}
+                                                {/*</label>*/}
+                                            </div>
+                                        )
+                                    }
                                     <header>
                                         <h2 className={"text-lg"}>Tarea</h2>
                                     </header>
-                                    <div className={"pl-2"}>
-                                        <Button.Group>
-                                            <button
-                                                outline
-                                                className={`${
-                                                    active === "venta" && " bg-primary text-white"
-                                                } p-3 border rounded-l-lg hover:bg-primary/60  `}
-                                                onClick={() => handlePurpose("venta")}
-                                            >
-                                                <p>Venta</p>
-                                            </button>
-                                            <button
-                                                className={`${
-                                                    active === "alquiler" && " bg-primary text-white"
-                                                } p-3 border rounded-r-lg mx-1 hover:bg-primary/60 `}
-                                                onClick={() => handlePurpose("alquiler")}
-                                            >
-                                                <p>Alquiler</p>
-                                            </button>
-                                        </Button.Group>
+                                    <div className={"pl-2 flex"}>
+                                        <button
+                                            className={`${
+                                                active === "venta" && " bg-primary text-white"
+                                            } p-3 border rounded-l-lg hover:bg-primary/60  `}
+                                            onClick={() => handlePurpose("venta")}
+                                        >
+                                            <p>Venta</p>
+                                        </button>
+                                        <button
+                                            className={`${
+                                                active === "alquiler" && " bg-primary text-white"
+                                            } p-3 border rounded-r-lg mx-1 hover:bg-primary/60 `}
+                                            onClick={() => handlePurpose("alquiler")}
+                                        >
+                                            <p>Alquiler</p>
+                                        </button>
                                     </div>
                                 </div>
                                 <div className={"w-80"}>

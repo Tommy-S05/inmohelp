@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faBath,
@@ -8,25 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import {useEffect, useState} from "react";
-
-const fetchProperties = () => {
-    return fetch(`http://localhost:8000/api/properties`, {
-        next: {
-            revalidate: 60,
-        },
-    }).then((response) => response.json());
-};
-
-const fetchAffordableProperties = () => {
-    return fetch(
-        `http://localhost:8000/api/affordable/properties`,
-        {
-            next: {
-                revalidate: 60,
-            },
-        }
-    ).then((response) => response.json());
-};
 
 const PropertySlide = ({image, name, purpose, price, garages, area, bathrooms, bedrooms,}) => {
     let USDollar = new Intl.NumberFormat('en-US', {
@@ -81,7 +62,7 @@ const PropertySlide = ({image, name, purpose, price, garages, area, bathrooms, b
 };
 
 export function ListOfProperties({affordable, newProperties}) {
-    const [properties, setProperties] = useState([]);
+    // const [properties, setProperties] = useState([]);
     
     // useEffect(() => {
     //     const handleAffordable = async() => {
@@ -98,11 +79,11 @@ export function ListOfProperties({affordable, newProperties}) {
     //     handleAffordable();
     // }, [affordable]);
     
-    useEffect(() => {
-        setProperties(newProperties);
-    }, [newProperties]);
+    // useEffect(() => {
+    //     setProperties(newProperties);
+    // }, [newProperties]);
     
-    return properties?.map((property) => (
+    return newProperties?.map((property) => (
         <article key={property.id}>
             <Link href={`/properties/${property.id}`}>
                 <PropertySlide

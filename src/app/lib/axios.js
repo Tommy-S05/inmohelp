@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useRouter} from "next/navigation";
 import {useAuth} from "@/app/hooks/auth";
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 export default function UseAxios() {
     const router = useRouter();
@@ -16,12 +17,13 @@ export default function UseAxios() {
         withCredentials: true
     });
     
-    AxiosInstance.interceptors.response.use(async function(config) {
+    AxiosInstance.interceptors.request.use(async function(config) {
         const token = localStorage.getItem('token');
         if(token) {
             console.log(token, "token");
             config.headers.Authorization = `Bearer ${token}`;
         }
+        console.log(config, "config");
         return config;
     }, function(error) {
         console.log(error, "error");

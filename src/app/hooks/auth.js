@@ -21,7 +21,7 @@ export const useAuth = () => {
     // }, [])
     const login = async({email, password}) => {
         await csrf();
-        await AxiosInstance.post('/login', {
+        await AxiosInstance.post('/api/login', {
             email: email,
             password: password
         })
@@ -39,7 +39,7 @@ export const useAuth = () => {
     //register
     const registerAuth = async({...props}) => {
         await csrf();
-        await AxiosInstance.post('/register', props.data)
+        await AxiosInstance.post('/api/register', props.data)
             .then(response => {
                 console.log("response register: ", response.data);
                 localStorage.setItem('token', response.data.token);
@@ -55,13 +55,13 @@ export const useAuth = () => {
     
     //Logout
     const logout = async() => {
-        await AxiosInstance.post('/logout')
+        await AxiosInstance.post('/api/logout')
             .then(() => {
                 localStorage.removeItem('token');
                 router.push('/');
+                router.refresh();
             })
     }
-    
     
     return {user, login, registerAuth, logout};
 }

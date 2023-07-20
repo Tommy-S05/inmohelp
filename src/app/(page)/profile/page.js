@@ -4,8 +4,7 @@ import {useAuth} from "@/app/hooks/auth";
 
 export default function Profile() {
     const {logout} = useAuth();
-    const handleLogout = async(e) => {
-        e.preventDefault();
+    const handleLogout = async() => {
         await logout();
     }
     return (
@@ -28,7 +27,7 @@ export default function Profile() {
                 
                 <div className="flex flex-col">
                     <h1 className="py-2">
-                        InmolHelp
+                        InmoHelp
                         <hr></hr>
                     </h1>
                     

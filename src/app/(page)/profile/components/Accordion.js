@@ -40,9 +40,6 @@ export default function DefaultAccordion({categories, accounts}) {
                 }
             }
         }
-        // console.log(subCategories)
-        // console.log('total_incomes: ', total_incomes)
-        // console.log('total_expenses: ', total_expenses)
         await submitFinancialData({total_incomes, total_expenses, subCategories});
     };
     

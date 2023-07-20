@@ -50,8 +50,22 @@ export default function registrar() {
                         <input
                             {...register('email', {required: true})}
                             type="email"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            className={"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"}
                             placeholder="name@company.com"
+                        ></input>
+                    </div>
+                    <div>
+                        <label
+                            htmlFor="phone_number"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Teléfono
+                        </label>
+                        <input
+                            {...register('phone_number', {required: true})}
+                            type={"text"}
+                            className={"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"}
+                            placeholder={"809-555-5555"}
                         ></input>
                     </div>
                     <div>
